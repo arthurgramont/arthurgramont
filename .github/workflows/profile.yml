@@ -38,12 +38,17 @@ jobs:
           OUT: ${{ runner.temp }}/out/repos.svg
         run: python3 scripts/repos.py
 
-      - name: Carte Recent activity
+      - name: Carte Featured project (Seego)
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GH_USER: ${{ github.repository_owner }}
-          OUT: ${{ runner.temp }}/out/activity.svg
-        run: python3 scripts/activity.py
+          # Optionnel : repo variable PROJECT_REPO = "owner/repo" si Seego n'est pas détecté automatiquement
+          PROJECT_REPO: ${{ vars.PROJECT_REPO }}
+          PROJECT_NAME: seego
+          PROJECT_TAGLINE: Collaborative trip-planning web app
+          PROJECT_URL: https://seego.fr
+          OUT: ${{ runner.temp }}/out/project.svg
+        run: python3 scripts/project.py
 
       # Tout vit sur une branche dédiée (1 seul commit, écrasé à chaque fois)
       # => l'historique de main reste propre.

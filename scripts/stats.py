@@ -40,6 +40,8 @@ query($login: String!) {
 """
 
 WEEKS = 33
+# Fichiers/langages qui faussent la répartition (notebooks = JSON lourd, etc.)
+IGNORED_LANGS = {"Jupyter Notebook", "Dockerfile", "Makefile"}
 LEVELS = ["#232640", "#3a4a8a", "#4f7fd1", "#7dd3fc", "#f0abfc"]
 
 
@@ -61,11 +63,15 @@ def summarize(user):
     cal = cc["contributionCalendar"]
     weeks = [[d["contributionCount"] for d in w["contributionDays"]] for w in cal["weeks"]][-WEEKS:]
 
-    langs, colors, stars = defaultdict(int), {}, 0
+    # Chaque repo pèse autant : on additionne la part de chaque langage dans le repo,
+    # pas les octets bruts (sinon un seul gros repo écrase tout le reste).
+    langs, colors, stars = defaultdict(float), {}, 0
     for repo in user["repositories"]["nodes"]:
         stars += repo["stargazerCount"]
-        for e in repo["languages"]["edges"]:
-            langs[e["node"]["name"]] += e["size"]
+        edges = [e for e in repo["languages"]["edges"] if e["node"]["name"] not in IGNORED_LANGS]
+        repo_total = sum(e["size"] for e in edges)
+        for e in edges:
+            langs[e["node"]["name"]] += e["size"] / repo_total
             colors[e["node"]["name"]] = e["node"]["color"] or "#8b8b99"
     total = sum(langs.values()) or 1
     top = sorted(langs.items(), key=lambda kv: -kv[1])[:5]

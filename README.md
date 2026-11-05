@@ -67,10 +67,10 @@ I've been building websites and mobile apps for about 5 years, through my studie
   <img src="https://raw.githubusercontent.com/arthurgramont/arthurgramont/output/repos.svg" alt="Latest work: most recently active repositories" width="100%">
 </p>
 
-### ⚡ Recent activity
+### 🧭 Featured project
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/arthurgramont/arthurgramont/output/activity.svg" alt="Recent public GitHub activity" width="100%">
+  <img src="https://raw.githubusercontent.com/arthurgramont/arthurgramont/output/project.svg" alt="Featured project: Seego" width="100%">
 </p>
 
 ### 🟢 Live
@@ -82,7 +82,7 @@ I've been building websites and mobile apps for about 5 years, through my studie
 ### 📫 Let's talk
 
 <p>
-  <a href="https://linkedin.com/in/https://www.linkedin.com/in/arthur-gramont/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+  <a href="https://www.linkedin.com/in/arthur-gramont/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="mailto:gramont.arthur@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email"></a>
   <a href="https://seego.fr"><img src="https://img.shields.io/badge/Seego-111?style=flat-square&logo=safari&logoColor=white" alt="Seego"></a>
 </p>
