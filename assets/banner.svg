@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220" role="img" aria-label="Arthur — DevOps &amp; full-stack developer">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1226"/>
+      <stop offset="0.55" stop-color="#16193a"/>
+      <stop offset="1" stop-color="#2a1740"/>
+    </linearGradient>
+    <linearGradient id="name" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7dd3fc"/>
+      <stop offset="1" stop-color="#f0abfc"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#e879f9" stop-opacity=".30"/>
+      <stop offset="1" stop-color="#e879f9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <style>
+    text { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .code { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; }
+  </style>
+
+  <rect width="900" height="220" rx="20" fill="url(#bg)"/>
+
+  <!-- halos qui dérivent doucement -->
+  <circle cx="160" cy="60" r="150" fill="url(#g1)">
+    <animate attributeName="cx" values="160;260;160" dur="14s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="760" cy="170" r="170" fill="url(#g2)">
+    <animate attributeName="cx" values="760;660;760" dur="16s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- grille discrète -->
+  <g stroke="#ffffff" stroke-opacity=".04">
+    <path d="M0 55H900M0 110H900M0 165H900"/>
+    <path d="M150 0V220M300 0V220M450 0V220M600 0V220M750 0V220"/>
+  </g>
+
+  <text class="code" x="56" y="62" font-size="15" fill="#7dd3fc" fill-opacity=".85">~/arthur $ whoami</text>
+  <text x="54" y="122" font-size="58" font-weight="800" fill="url(#name)">Hey, I'm Arthur</text>
+  <text x="56" y="160" font-size="20" fill="#c7c9e6">DevOps · Cloud · Full-stack — building things that ship.</text>
+
+  <!-- curseur qui clignote -->
+  <rect x="56" y="180" width="10" height="3" rx="1.5" fill="#f0abfc">
+    <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
+</svg>
