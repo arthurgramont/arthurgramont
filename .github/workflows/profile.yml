@@ -1,0 +1,59 @@
+name: Update profile cards
+
+on:
+  schedule:
+    - cron: "17 3 * * *"   # une fois par jour
+  push:
+    branches: [main]
+    paths: ["scripts/**", ".github/workflows/profile.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-cards
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Préparer le dossier de sortie
+        run: mkdir -p "$RUNNER_TEMP/out"
+
+      - name: Carte d'activité GitHub
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_USER: ${{ github.repository_owner }}
+          OUT: ${{ runner.temp }}/out/stats.svg
+        run: python3 scripts/stats.py
+
+      - name: Carte Latest work
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_USER: ${{ github.repository_owner }}
+          OUT: ${{ runner.temp }}/out/repos.svg
+        run: python3 scripts/repos.py
+
+      - name: Carte Recent activity
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_USER: ${{ github.repository_owner }}
+          OUT: ${{ runner.temp }}/out/activity.svg
+        run: python3 scripts/activity.py
+
+      # Tout vit sur une branche dédiée (1 seul commit, écrasé à chaque fois)
+      # => l'historique de main reste propre.
+      - name: Publier sur la branche output
+        run: |
+          cd "$RUNNER_TEMP/out"
+          git init -q -b output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -q -m "chore: update profile cards"
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git push -f origin output
